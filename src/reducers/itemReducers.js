@@ -12,7 +12,7 @@ export function itemReducers(state = {items: []}, action) {
       
       const indexToDelete = currentItemToDelete.findIndex(
         function(item) {
-          return item.name === action.payload.name
+          return item._id === action.payload
         }
       )
         
@@ -24,7 +24,7 @@ export function itemReducers(state = {items: []}, action) {
         
         const indexToUpdate = currentItemToUpdate.findIndex(
           function(item) {
-            return item.name === action.payload[0].name
+            return item.name == action.payload[0].name
           }
         )
 
