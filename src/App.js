@@ -14,6 +14,8 @@ import logger from 'redux-logger';
 import thunk from 'redux-thunk'; 
 
 import ItemList from './components/pages/itemList';
+import Menu from './components/menu';
+import Footer from './components/footer';
 
 //we use the Redux logger printout of the previous and current state
 const middleware = applyMiddleware(thunk, logger);
@@ -82,7 +84,14 @@ class App extends Component {
     return (
       <div className="App">
         <Provider store = {store}>
+          <div>
+          <Menu />
+          <br />
+          <br />
+          <br />
           <ItemList />
+          <Footer />
+          </div>
         </Provider>
       </div>
     );
