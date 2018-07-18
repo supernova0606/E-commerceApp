@@ -9,9 +9,9 @@ class ItemsForm extends React.Component {
 
     handleSubmit() {
         const item = [{
-            title: findDOMNode(this.refs.title).nodeValue,
-            description: findDOMNode(this.refs.description).nodeValue,
-            price: findDOMNode(this.refs.price).nodeValue,
+            title: findDOMNode(this.refs.title).value,
+            description: findDOMNode(this.refs.description).value,
+            price: findDOMNode(this.refs.price).value,
         }]
         this.props.postItem(item);
     }

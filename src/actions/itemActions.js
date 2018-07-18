@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function getItems() {
     return function(dispatch) {
-        axios.get("/api/items")
+        axios.get('/api/items')
         .then(function(response) {
             dispatch({type: "GET_ITEMS", payload: response.data})
         })
@@ -14,7 +14,7 @@ export function getItems() {
 
 export function postItem(item) {
     return function(dispatch) {
-        axios.post("/api/item", item)
+        axios.post('/api/items', item)
         .then(function(response) {
             dispatch({type:"POST_ITEM", payload: response.data})
         })
@@ -26,7 +26,7 @@ export function postItem(item) {
 
 export function deleteItem(id) {
     return function(dispatch) {
-        axios.delete("/api/item/" + id)
+        axios.delete('/api/items/' + id)
         .then(function(response) {
             dispatch({type:"DELETE_ITEM", payload: id})
         })

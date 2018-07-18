@@ -7,8 +7,8 @@ var logger = require('morgan');
 //Proxy
 var httpProxy = require('http-proxy'); 
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+// var indexRouter = require('./routes/index');
+// var usersRouter = require('./routes/users');
 
 var app = express();
 const apiProxy = httpProxy.createProxyServer({
