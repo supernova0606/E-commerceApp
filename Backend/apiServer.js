@@ -23,12 +23,10 @@ var Items = require('./models/items.js');
 
 //POST ITEMS 
 app.post('/items', function(req, res) {
-  console.log("making the post call bro");
   var item = req.body; 
 
   Items.create(item, function(err, items) {
     if(err) {
-      console.log("post error bro");
       throw err;
     }
     res.json(items); 
