@@ -1,5 +1,11 @@
 export function cartReducers(state={cart:[]}, action) {
     switch(action.type) {
+        case "GET_CART":
+            return {...state,
+                cart: action.payload,
+                totalAmount: totals(action.payload).amount,
+                totalQty: totals(action.payload).qty 
+            }
         case "ADD_TO_CART":
             return {...state, cart:action.payload,
                 totalAmount: totals(action.payload).amount,
@@ -11,24 +17,9 @@ export function cartReducers(state={cart:[]}, action) {
                 totalQty: totals(action.payload).qty
             }
         case "UPDATE_CART":
-            const currentItemToUpdate = [...state.cart]
-        
-            const indexToUpdate = currentItemToUpdate.findIndex(
-              function(item) {
-                return item.name === action._id
-              }
-            )
-    
-            const newItemToUpdate = {
-                quantity: currentItemToUpdate[indexToUpdate].quantity + action.unit
-            }
-
-            let cartUpdate = [...currentItemToUpdate.slice(0, indexToUpdate),
-            newItemToUpdate, ...currentItemToUpdate.slice(indexToUpdate + 1)]
-
-            return {...state, cart: cartUpdate,
-                totalAmount: totals(cartUpdate).amount,
-                totalQty: totals(cartUpdate).qty
+            return {...state, cart: action.payload,
+                totalAmount: totals(action.payload).amount,
+                totalQty: totals(action.payload).qty
             }
         default: 
             break;

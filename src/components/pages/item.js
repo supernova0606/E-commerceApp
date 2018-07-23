@@ -24,7 +24,7 @@ class Item extends React.Component {
             if(cartIndex === -1) {
                 this.props.addToCart(item);
             } else {
-                this.props.updateCart(_id, 1)
+                this.props.updateCart(_id, 1, this.props.cart);
             }
         } else {
             this.props.addToCart(item);

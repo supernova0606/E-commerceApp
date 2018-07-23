@@ -10,14 +10,18 @@ import {Provider} from 'react-redux';
 import {addToCart} from './actions/cartActions';   
 import {postItem, deleteItem, updateItem, getItems} from './actions/itemActions'; 
 
+import {BrowserRouter, Route, Switch} from'react-router-dom';
+
 import logger from 'redux-logger';
 import thunk from 'redux-thunk'; 
 
 import ItemList from './components/pages/itemList';
 import Menu from './components/menu';
 import Footer from './components/footer';
+import itemsForm from './components/pages/itemsForm';
 
-//we use the Redux logger printout of the previous and current state
+import routes from './routes';
+
 const middleware = applyMiddleware(thunk, logger);
 let store = createStore(reducers, middleware);
 
@@ -26,74 +30,18 @@ let store = createStore(reducers, middleware);
 //   console.log('Here is the state', store.getState())
 // })
 
-//testing the various api methods on the front end 
-// store.dispatch(postItem(
-//   [{
-//     name: 'Test Item 1',
-//     description: 'An item',
-//     price: 50, 
-//     images: 'No Images'
-//   },
-//   {
-//     name: 'Test Item 2',
-//     description: 'Yet Another Item',
-//     price: 5000, 
-//     images: 'No Images'
-//   }]
-// ))
-
-// store.dispatch(deleteItem(
-//   {name: 'Test Item 2'}
-// ))
-
-// store.dispatch(updateItem(
-//   [{
-//     name: 'Test Item 1'
-//   }, {
-//     name: 'Brand New Item',
-//     description: 'A new description',
-//     price: 100,
-//     images: 'No Images'
-//   }]
-// ))
-
-// store.dispatch(postItem(
-//   [{
-//     name: 'A Cool Item',
-//     description: 'An really cool itemn',
-//     price: 50, 
-//     images: 'No Images'
-//   },
-//   {
-//     name: 'Another Cool Item',
-//     description: 'See title',
-//     price: 5000, 
-//     images: 'dunno man'
-//   }]
-// ))
-
-// store.dispatch(addToCart(
-//     [{
-//       name: 'Test Item'
-//     }]
-// ))
-// store.dispatch(getItems)
+const Routes = (
+  <Provider store={store}>
+    <BrowserRouter>
+      {routes}
+    </BrowserRouter>
+  </Provider>
+)
 
 class App extends Component {
   render() {
-    return (
-      <div className="App">
-        <Provider store = {store}>
-          <div>
-          <Menu />
-          <br />
-          <br />
-          <br />
-          <ItemList />
-          <Footer />
-          </div>
-        </Provider>
-      </div>
+    return(
+      Routes
     );
   }
 }

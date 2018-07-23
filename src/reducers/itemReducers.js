@@ -2,8 +2,8 @@
 export function itemReducers(state = {items: []}, action) {
     switch (action.type) {
       case "GET_ITEMS":
-        return {...state, items:[...action.payload] }
-
+        return {...state, items:[...action.payload] };
+        
     case 'POST_ITEM':
       return { items: [...state.items, ...action.payload] };
   

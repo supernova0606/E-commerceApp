@@ -2,10 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Modal, Panel, Row, Col, Well, Button, ButtonGroup, Label} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
-import {deleteCartItem, updateCart, addToCart} from '../../actions/cartActions';
+import {deleteCartItem, updateCart, addToCart, getCart} from '../../actions/cartActions';
 
 
-class Cart extends React.Component {    
+class Cart extends React.Component {  
+    componentDidMount() {
+        this.props.getCart();
+    }  
+
     onDelete(_id) {
         const currentItemToDelete = this.props.cart;
       
@@ -36,11 +40,11 @@ class Cart extends React.Component {
     }
 
     onIncrement(_id) {
-        this.props.updateCart(_id, 1);
+        this.props.updateCart(_id, 1, this.props.cart);
     }
     onDecrement(_id, quantity) {
         if(quantity > 1) {
-            this.props.updateCart(_id, -1);
+            this.props.updateCart(_id, -1, this.props.cart);
         }
     }
 
@@ -92,25 +96,27 @@ class Cart extends React.Component {
                         </Button>
                     </Col>
                 </Row>
-                <Modal show={this.state.show} onHide={this.handleClose.bind(this)}>
-                <Modal.Header closeButton>
-                  <Modal.Title>Thank You!</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <h6>Your order has been saved!</h6>
-                  <p>We will notifiy you via email!</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Col xs = {6}>
-                        <h6>total $: {this.props.totalAmount}</h6>
-                    </Col>
-                  <Button onClick={this.handleClose.bind(this)}>Close</Button>
-                </Modal.Footer>
-              </Modal>
+                <Modal show = {this.state.showModal} onHide={this.close.bind(this)} >
+                    <Modal.Header closeButton>
+                        <Modal.Title>Thank you!</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <h6>Your order has been saved! </h6>
+                        <p>You will receive an email confirmation</p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Col xs={6}>
+                            <h6>total $:</h6>
+                        </Col> 
+                        <Button onClick={this.close.bind(this)}> Close </Button>
+                    </Modal.Footer>
+                </Modal>
             </Panel>
         )
     }
 }
+
+
 
 function mapStateToProps(state) {
     return {
@@ -123,7 +129,8 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators({
         deleteCartItem: deleteCartItem,
         addToCart: addToCart,
-        updateCart: updateCart
+        updateCart: updateCart,
+        getCart: getCart
     }, dispatch)
 }
 
