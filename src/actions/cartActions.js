@@ -29,7 +29,7 @@ export function updateCart(_id, unit, cart) {
         
     const indexToUpdate = currentItemToUpdate.findIndex(
       function(item) {
-        return item.name === _id
+        return item._id === _id
       }
     )
 

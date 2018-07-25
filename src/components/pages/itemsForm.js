@@ -77,9 +77,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({postItem, 
-    deleteItem
-}, dispatch)
+        return bindActionCreators({postItem, 
+        deleteItem
+    }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsForm);

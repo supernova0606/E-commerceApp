@@ -36,7 +36,7 @@ class Item extends React.Component {
             <Well>
                 <Row>
                     <Col xs = {12}>
-                        <h6>{this.props.title}</h6>
+                        <h3>{this.props.title}</h3>
                         <p>{this.props.description}</p>
                         <h6>{this.props.price}</h6>
                         <Button onClick={this.handleCart.bind(this)}  bsStyle = 'primary'>Buy</Button>

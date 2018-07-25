@@ -11,6 +11,7 @@ class ItemList extends React.Component {
     componentDidMount() {
         this.props.getItems();
     }
+    
     render() {
         const itemList = this.props.items.map(function(itemsArr) {
             return(
@@ -23,7 +24,6 @@ class ItemList extends React.Component {
                 </Col>
             )
         })
-        console.log('Here is the state', this.props.items);
         return(
             <Grid>
                 <Row>  

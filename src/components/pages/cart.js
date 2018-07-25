@@ -42,6 +42,7 @@ class Cart extends React.Component {
     onIncrement(_id) {
         this.props.updateCart(_id, 1, this.props.cart);
     }
+    
     onDecrement(_id, quantity) {
         if(quantity > 1) {
             this.props.updateCart(_id, -1, this.props.cart);
@@ -61,18 +62,19 @@ class Cart extends React.Component {
     }
 
     renderCart() {
-        const cartItemsList = this.props.cart.map(function(cartArr){
+        console.log(`Here is the cart ${cartItemsList}`);
+        const cartItemsList = this.props.cart.map(function(cartArr) {
             return(
                 <Panel key = {cartArr._id}>
                     <Row>
                         <Col xs = {12} sm = {4}>
-                            <h6>{cartArr.title}</h6><span>    </span>
+                            <h6> Title: {cartArr.title}</h6><span>    </span>
                         </Col>
                         <Col xs = {12} sm = {2}>
-                            <h6>cost: {cartArr.price}</h6>
+                            <h6> Cost: {cartArr.price}</h6>
                         </Col>
                         <Col xs = {12} sm = {2}>
-                            <h6>qty: <Label bsStyle = "success">{cartArr.quantity}</Label></h6>
+                            <h6> Qty: <Label bsStyle = "success">{cartArr.quantity}</Label></h6>
                         </Col>
                         <Col xs = {6} sm = {4}>
                             <ButtonGroup style = {{minWidth: '300px'}}></ButtonGroup>
@@ -115,8 +117,6 @@ class Cart extends React.Component {
         )
     }
 }
-
-
 
 function mapStateToProps(state) {
     return {
